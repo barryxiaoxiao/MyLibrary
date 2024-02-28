@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdd.library.dao.TypeMapper">
+    <resultMap type="com.wdd.library.pojo.Category" id="typeinfo">
+        <result column="cid" property="cid"/>
+        <result column="cname" property="cname"/>
+    </resultMap>
+
+    <select id="listCategory" resultMap="typeinfo" >
+        SELECT *
+        from class_info
+    </select>
+
+    <update id="updateBookType" parameterType="Category" >
+        UPDATE  class_info SET cname=#{cname}
+        where cid=#{cid}
+    </update>
+
+    <delete id="delBookType" parameterType="int" >
+        delete from  class_info where cid=#{cid}
+    </delete>
+
+    <insert id="addBookType" parameterType="Category" >
+        INSERT INTO  class_info(cname) VALUES(#{cname})
+    </insert>
+</mapper>
